@@ -1,6 +1,8 @@
 import store from 'store'
 
 export function setItem(key, value) {
+  // let time = new Date()  过期策略后面具体到项目考虑
+
   return store.set(key, value)
 }
 

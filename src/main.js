@@ -5,6 +5,8 @@ import store from './store/index'
 
 import 'normalize.css'
 import '@/assets/css/global.scss'
+// REM
+import '@/assets/rem'
 
 Vue.config.productionTip = false
 

@@ -1,17 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import app from '@/assets/js/utils'
+
+import Home from './views/Home'
+import MapView from './views/MapView'
+import Login from './views/Login'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
+  routes: [{
+      path: '/login',
+      name: 'login',
+      component: Login,
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [{
+        path: '',
+        redirect: 'mapView'
+      }, {
+        path: 'mapView',
+        name: 'mapView',
+        component: MapView
+      }]
     }
     // ,
     // {
@@ -24,3 +43,20 @@ export default new Router({
     // }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to, 'router');
+  if (to.meta.requiresAuth !== false) {
+    let token = app.getItem('Authorization')
+    if (!token) {
+      next('/login');
+      return;
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router

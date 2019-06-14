@@ -1,23 +1,28 @@
 <template>
-  <div class="home">
-    <MapView />
+  <div class="home-router">
+    <Header />
+    <div class="home-router-body">
+      <router-view />
+    </div>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-// import AMap from '@/components/map/AMap'
-import MapView from './Home/MapView'
+import Header from '@/views/Header'
 export default {
-  name: 'home',
-  components: {
-    MapView
-  }
+  components: { Header }
 }
 </script>
+
 <style lang="scss" scoped>
-.home {
+.home-router {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .home-router-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
 }
 </style>
