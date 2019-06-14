@@ -1,5 +1,7 @@
 # wenzhou_fire_front
 
+前端大屏展示基础样式框架,用来初始化项目用
+
 ## Project setup
 ```
 yarn install
