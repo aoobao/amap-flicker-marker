@@ -2,17 +2,25 @@ import {
   AMAP_KEY,
   AMAP_VERSION
 } from '@/assets/setting'
-let _callback = null
+let _callback = []
 
 window.__AMAP_CALLBACK = function () {
   // console.log('加载高德地图成功')
-  typeof _callback === 'function' && _callback()
+  let callback = _callback.shift()
+  if (typeof callback === 'function') {
+    callback()
+    window.__AMAP_CALLBACK()
+  }
+  // typeof _callback === 'function' && _callback()
 }
 
 let isLoad = false
 
 export default function requireAMap(callback) {
-  _callback = callback
+  // _callback = callback
+  if (typeof callback === 'function') {
+    _callback.push(callback)
+  }
   if (!isLoad) {
     isLoad = true
     let url = `https://webapi.amap.com/maps?v=${AMAP_VERSION}&key=${AMAP_KEY}&callback=__AMAP_CALLBACK`;
@@ -23,7 +31,6 @@ export default function requireAMap(callback) {
 
     document.head.appendChild(jsapi);
   } else {
-    // 暂时直接回调
     window.__AMAP_CALLBACK()
   }
 
