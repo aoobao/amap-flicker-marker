@@ -8,7 +8,7 @@ import {
 } from '@/assets/js/utils'
 
 let baseAxios = axios.create({
-  baseURL: env.URL,
+  baseURL: env.url,
   // headers: {
   //   'Content-Type': 'application/x-www-form-urlencoded'
   // }
