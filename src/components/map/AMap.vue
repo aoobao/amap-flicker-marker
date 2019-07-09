@@ -1,6 +1,6 @@
 <template>
   <div class="map" ref="map">
-    <slot></slot>
+    <slot v-if="isCreated"></slot>
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
       default () {
         return {
           zoom: 8,//级别
-          viewMode: '2D'//使用3D视图
+          viewMode: '2D'
         }
       }
     }
@@ -21,7 +21,8 @@ export default {
   data () {
     let amap = {}
     return {
-      amap
+      amap,
+      isCreated: false
     }
   },
   provide () {
@@ -48,11 +49,20 @@ export default {
         ...this.opts
       })
       setTimeout(() => {
-        this.$emit('created')
+        this.isCreated = true
+        this.$emit('created', this.getMap())
       }, 1);
     },
     getMap () {
       return this.amap.$map || null
+    },
+    applyMethod (methodName, ...params) {
+      let map = this.getMap()
+      if (!map) {
+        console.warn('not ready')
+        return
+      }
+      return map[methodName](...params)
     }
   }
 }
