@@ -6,6 +6,7 @@
  * delay 延迟时间 默认随机 错开不同点.
  * radius 30  // 半径
  * speed 1  // 速度 1表示 1秒钟循环1次.值越高闪烁越快
+ * circleRadius 2 // 中间小圆大小
  */
 export default class FlickerPoint {
   constructor(opt) {
@@ -18,6 +19,7 @@ export default class FlickerPoint {
     // 延迟启动时间 保证同时加入的点不是相同频率闪烁
     this._delay = opt.delay || ~~(Math.random() * 1000)
     this._radius = opt.radius || 30
+    this._circleRadius = opt.circleRadius || 2
     this._time = new Date().getTime()
   }
 
@@ -25,14 +27,15 @@ export default class FlickerPoint {
   getStatus() {
     let time = new Date().getTime()
     let diffTime = time - this._time - this._delay
-    let extData = this.getExtData()
+    // let extData = this.getExtData() || {}
     if (diffTime <= 0) {
       return {
         position: this._position,
         color: this._color,
+        circleRadius: this._circleRadius,
         radius: 1,
         alpha: 0.8,
-        ...extData
+        // ...extData
       }
     }
     let useTime = ~~(1000 / this._speed)
@@ -43,10 +46,15 @@ export default class FlickerPoint {
     return {
       position: this._position,
       color: this._color,
+      circleRadius: this._circleRadius,
       radius,
       alpha,
-      ...extData
+      // ...extData
     }
+  }
+
+  getPosition() {
+    return this._position
   }
 
   setExtData(data) {
@@ -54,7 +62,7 @@ export default class FlickerPoint {
   }
 
   getExtData() {
-    return this._extData || {}
+    return this._extData || null
   }
 
 }
