@@ -68,6 +68,7 @@ export default class FlickerCanvasLayer extends AMapUtils.Overlays {
     let list = this._points
     let ctx = this._ctx
     ctx.save()
+
     for (let i = 0; i < list.length; i++) {
       const point = list[i];
       let pixel = this.getPixelByPoint(point)
@@ -76,6 +77,8 @@ export default class FlickerCanvasLayer extends AMapUtils.Overlays {
       if (x > 0 && y > 0 && x < this._width && y < this._height) {
         let opt = point.getStatus()
         ctx.fillStyle = opt.color
+
+
         // 画扩散圆
         ctx.globalAlpha = opt.alpha
         ctx.beginPath()
@@ -140,8 +143,11 @@ export default class FlickerCanvasLayer extends AMapUtils.Overlays {
       cancelAnimationFrame(this._timer)
       this._timer = null
     }
-    map.off('moveend', this.clearPixel, this)
-    map.off('resize', this.resizeCanvasSize, this)
+    if (map) {
+      map.off('moveend', this.clearPixel, this)
+      map.off('resize', this.resizeCanvasSize, this)
+    }
+
     super.destroy()
   }
 

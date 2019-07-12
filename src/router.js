@@ -4,21 +4,14 @@ import app from '@/assets/js/utils'
 
 import Home from './views/Home'
 import MapView from './views/MapView'
-import Login from './views/Login'
+// import Login from './views/Login'
 
 Vue.use(Router)
 
 let router = new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{
-      path: '/login',
-      name: 'login',
-      component: Login,
-      meta: {
-        requiresAuth: false
-      }
-    },
+  routes: [
     {
       path: '/',
       name: 'home',

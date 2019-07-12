@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <MapView />
+    <MapView ref="mapView" />
+    <div class="control">
+      <input type="text" v-model.number="number">
+      <button style="margin-left:10px;" @click="update">刷新</button>
+    </div>
   </div>
 </template>
 
@@ -13,6 +17,16 @@ export default {
   name: 'home',
   components: {
     MapView
+  },
+  data () {
+    return {
+      number: 100
+    }
+  },
+  methods: {
+    update () {
+      this.$refs.mapView.setRandList(this.number)
+    }
   }
 }
 </script>
@@ -21,27 +35,10 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  .left-context {
-    width: 5rem;
+  .control {
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .right-context {
-    width: 5rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    left: 20px;
+    top: 20px;
   }
 }
 </style>

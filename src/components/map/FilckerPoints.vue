@@ -39,8 +39,8 @@ export default {
         zIndex: 150,
         level
       })
-
       this.setObject(layer)
+      this.initData()
     },
     initData () {
       let layer = this.getObject()
@@ -49,6 +49,11 @@ export default {
     // 销毁组件调用.
     destroy () {
 
+    }
+  },
+  watch: {
+    data () {
+      this.initData()
     }
   }
 }
