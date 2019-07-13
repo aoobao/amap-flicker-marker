@@ -1,6 +1,11 @@
 # wenzhou_fire_front
 
-前端大屏展示基础样式框架,用来初始化项目用
+demo地址:[https://aoobao.github.io/amap-flicker-marker/](https://aoobao.github.io/amap-flicker-marker/)
+
+### 源码js文件在src/assets/js/amap下
+### vue组件的封装在src/components/map下
+#### 注意闪烁点依赖AMap.CustomLayer,需要在引入高德src时加上plugin
+
 
 ## Project setup
 ```
