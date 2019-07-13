@@ -40,13 +40,14 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   console.log(to, 'router');
   if (to.meta.requiresAuth !== false) {
-    let token = app.getItem('Authorization')
-    if (!token) {
-      next('/login');
-      return;
-    } else {
-      next();
-    }
+    // let token = app.getItem('Authorization')
+    // if (!token) {
+    //   next('/login');
+    //   return;
+    // } else {
+    //   next();
+    // }
+    next()
   } else {
     next();
   }
