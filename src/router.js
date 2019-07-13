@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import app from '@/assets/js/utils'
+// import app from '@/assets/js/utils'
 
 import Home from './views/Home'
 import MapView from './views/MapView'
@@ -38,7 +38,7 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to, 'router');
+  // console.log(to, 'router');
   if (to.meta.requiresAuth !== false) {
     // let token = app.getItem('Authorization')
     // if (!token) {
