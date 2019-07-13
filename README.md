@@ -1,4 +1,4 @@
-# wenzhou_fire_front
+# 闪烁点效果
 
 demo地址:[https://aoobao.github.io/amap-flicker-marker/](https://aoobao.github.io/amap-flicker-marker/)
 
