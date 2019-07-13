@@ -1,6 +1,7 @@
 import {
   AMAP_KEY,
-  AMAP_VERSION
+  AMAP_VERSION,
+  AMAP_PLUGIN
 } from '@/assets/setting'
 let _callback = []
 
@@ -23,7 +24,7 @@ export default function requireAMap(callback) {
   }
   if (!isLoad) {
     isLoad = true
-    let url = `https://webapi.amap.com/maps?v=${AMAP_VERSION}&key=${AMAP_KEY}&callback=__AMAP_CALLBACK`;
+    let url = `https://webapi.amap.com/maps?v=${AMAP_VERSION}&key=${AMAP_KEY}&plugin=${AMAP_PLUGIN}&callback=__AMAP_CALLBACK`
 
     let jsapi = document.createElement('script');
     jsapi.charset = 'utf-8';
