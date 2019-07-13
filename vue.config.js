@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/',
+  publicPath: '/amap-flicker-marker/',
   outputDir: 'docs'
 
 }
